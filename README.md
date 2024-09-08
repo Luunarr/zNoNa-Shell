@@ -15,7 +15,7 @@ Le projet inclut des fonctionnalités pour naviguer dans le système de fichiers
 
 2. Installez les dépendances nécessaires :
    ```bash
-   pip install colorama
+   pip install -r requirements.txt
    ```
 
 3. Exécutez le shell :
