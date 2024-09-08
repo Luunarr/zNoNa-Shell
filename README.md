@@ -2,9 +2,11 @@
 
 ## 🌟 Description
 
-**zNoNa-Shell** est un projet de shell Python open-source, actuellement en version **0.1**. Ce shell te permet de naviguer dans ton système de fichiers et de gérer tes fichiers et répertoires avec une touche de style grâce à la bibliothèque `colorama`. 🎨
+**zNoNa-Shell** est un projet de shell Python open-source, actuellement en version **0.1**. Ce shell te permet de naviguer dans ton système de fichiers et de gérer tes fichiers et répertoires avec une touche de style grâce à la bibliothèque `colorama`. 🎨✨
 
-Que tu sois un développeur curieux ou simplement quelqu'un qui veut améliorer son terminal, **zNoNa-Shell** est conçu pour être simple à utiliser et facilement extensible. 🌐
+Mais ce n'est pas tout ! **zNoNa-Shell** est orienté vers la cybersécurité 🔐 et va bientôt intégrer des fonctionnalités spécifiques pour ce domaine. Que tu sois un développeur curieux 👨‍💻 ou un passionné de sécurité informatique 🕵️‍♂️, ce shell est fait pour toi. 🌐🚀
+
+Reste à l'affût des prochaines mises à jour 🆙 pour découvrir des outils et des fonctionnalités supplémentaires qui renforceront la sécurité 🔒 et amélioreront ton expérience terminale. 💡🔧
 
 ## 🚀 Installation
 
