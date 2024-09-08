@@ -13,6 +13,7 @@ import psutil
 import socket
 import shutil
 import webbrowser
+import hashlib
 import time
 import platform
 import subprocess
