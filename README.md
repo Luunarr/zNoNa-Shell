@@ -41,5 +41,3 @@ Des questions ou des suggestions ? Tu as deux options pour me contacter :
 
 1. 📩 **Envoyer un message privé** : **aa_aaaa_bbb_bbbbb** sur Discord.
 2. 🌐 **Rejoins-nous sur Discord !** : [zNoNa-Shell](https://discord.gg/zA9FhD6uGt) pour discuter avec la communauté et obtenir du soutien.
-
-Je suis ravi de te lire et d'échanger avec toi ! 😊
