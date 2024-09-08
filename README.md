@@ -17,17 +17,17 @@ Rejoins-nous dans cette aventure pour renforcer la sécurité 🔒 et rendre le 
 ## 🚀 Installation
 
 1. Clone le repository :
-   ```py
+   ```bash
    git clone https://github.com/Luunarr/zNoNa-Shell.git
    ```
 
 2. Installe les dépendances nécessaires :
-   ```py
+   ```bash
    pip install -r requirements.txt
    ```
 
 3. Lance le shell :
-   ```py
+   ```bash
    python zNoNa-Shell.py
    ```
 
