@@ -9,7 +9,7 @@ Que tu sois un développeur curieux ou simplement quelqu'un qui veut améliorer 
 ## 🚀 Installation
 
 1. Clone le repository :
-2. ```bash
+   ```bash
    git clone https://github.com/Luunarr/zNoNa-Shell.git
    ```
 
