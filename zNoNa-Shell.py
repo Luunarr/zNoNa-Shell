@@ -19,8 +19,7 @@ def cwd():
 
 path = cwd()
 
-prompt = f"""{Style.BRIGHT}{Fore.WHITE}{hostname}@{login} {Fore.CYAN}{path}{Fore.BLUE}
-{Fore.RED}$ {Style.RESET_ALL}"""
+prompt = f"""{Style.BRIGHT + Fore.BLUE + hostname + Fore.WHITE}@{Fore.BLUE + login + Fore.WHITE}:{Fore.CYAN + path + Fore.BLUE + Fore.RED}$ {Style.RESET_ALL}"""
 
 def zNoNa(): # zNoNa shell 
     print(f"""{Style.BRIGHT}
@@ -347,8 +346,8 @@ def ls(): # cmd : ls
     cwd = os.getcwd()
     items = os.listdir(cwd)
     mlength = max(len(item) for item in items)
-    ncolumns = max(1, os.get_terminal_size().columns // (mlength + 2))
-    
+    ncolumns = max(1, os.get_terminal_size().columns // (mlength + 4)) 
+
     items.sort()
     
     for i in range(0, len(items), ncolumns):
@@ -357,17 +356,16 @@ def ls(): # cmd : ls
         for item in rowi:
             ipath = os.path.join(cwd, item)
             if os.path.isdir(ipath):
-                row += f"{Style.BRIGHT}{Back.LIGHTBLACK_EX}{item.ljust(mlength + 2)}{Style.RESET_ALL}"
+                row += f"{Style.BRIGHT + Back.LIGHTBLACK_EX + item + Style.RESET_ALL}/ {(' ' * (mlength - len(item)))}"
             else:
-                row += f"{Style.BRIGHT}{colorls(item)}{item.ljust(mlength + 2)}{Style.RESET_ALL}"
+                row += f"{Style.BRIGHT + colorls(item) + item.ljust(mlength + 2) + Style.RESET_ALL}"
         print(row)
 
 def cd(path): # cmd : cd
     try:
         os.chdir(path)
         global prompt
-        prompt = f"""{Style.BRIGHT}{Fore.WHITE}{hostname}@{login} {Fore.CYAN}{cwd()}{Fore.BLUE}
-{Fore.RED}$ {Style.RESET_ALL}"""
+        prompt = f"""{Style.BRIGHT + Fore.BLUE + hostname + Fore.WHITE}@{Fore.BLUE + login + Fore.WHITE}:{Fore.CYAN + cwd() + Fore.BLUE + Fore.RED}$ {Style.RESET_ALL}"""
     except FileNotFoundError:
         print(f"{Fore.RED + Style.BRIGHT}cd: {Style.RESET_ALL}No such file or directory '{path}'")
     except PermissionError:
@@ -463,7 +461,7 @@ def webopen(Inputwebopen): # cmd : webopen
     except Exception as e:
         print(f"{Fore.RED}webopen: {Style.RESET_ALL}Error {e}")
 
-def znonafetch():
+def znonafetch(): # cmd : znonafetch
     info = get1()
     os = info['OS']
     kernel = info['Kernel']
