@@ -29,4 +29,9 @@ Tu veux ajouter des fonctionnalités ou corriger des bogues ? Les contributions 
 
 ## 💬 Contact
 
-Des questions ou des suggestions ? N'hésite pas à me contacter via Discord : **aa_aaaa_bbb_bbbbb**. 
+Des questions ou des suggestions ? Tu as deux options pour me contacter :
+
+1. 📩 **Envoyer un message privé** : **aa_aaaa_bbb_bbbbb** sur Discord.
+2. 🌐 **Rejoins-nous sur Discord !** : [https://discord.gg/zA9FhD6uGt](https://discord.gg/zA9FhD6uGt) pour discuter avec la communauté et obtenir du soutien.
+
+Je suis ravi de te lire et d'échanger avec toi ! 😊
