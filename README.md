@@ -13,12 +13,12 @@ Que tu sois un développeur curieux ou simplement quelqu'un qui veut améliorer 
    git clone https://github.com/Luunarr/zNoNa-Shell.git
    ```
 
-3. Installe les dépendances nécessaires :
+2. Installe les dépendances nécessaires :
    ```bash
    pip install -r requirements.txt
    ```
 
-4. Lance le shell :
+3. Lance le shell :
    ```bash
    python zNoNa-Shell.py
    ```
