@@ -1,3 +1,13 @@
+# ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————— #
+#                                                                                                                                               #
+#                                zNoNa-Shell v0.1                                                                                               #
+#                                                                                                                                               #
+#                           Shell by Lunar / Discord: https://discord.gg/2fAVHpqe                                                               #
+#                           Type 'help' for assistance                                                                                          #
+#                           © zNoNa-Shell                                                                                                       #
+#                                                                                                                                               #
+# ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————— #
+
 import os
 import psutil
 import socket
@@ -23,12 +33,12 @@ prompt = f"""{Style.BRIGHT + Fore.BLUE + hostname + Fore.WHITE}@{Fore.BLUE + log
 
 def zNoNa(): # zNoNa shell 
     print(f"""{Style.BRIGHT}
-{Fore.CYAN}+———————————————————————————————————————————————+
-{Fore.CYAN}| {Fore.WHITE}zNoNa-Shell           v-0.1                   {Fore.CYAN}|
-{Fore.CYAN}| {Fore.BLUE}shell {Fore.WHITE}by {Fore.RED}Lunar {Fore.WHITE}/ discord : aa_aaaa_bbb_bbbbb  {Fore.CYAN}|
-{Fore.CYAN}| {Fore.WHITE}type 'help' for more assistance               {Fore.CYAN}|
-{Fore.CYAN}| {Fore.WHITE}© zNoNa-Shell                                 {Fore.CYAN}|
-{Fore.CYAN}+———————————————————————————————————————————————+
+{Fore.CYAN}+——————————————————————————————————————————————————————————+
+{Fore.CYAN}| {Fore.WHITE}zNoNa-Shell                                      v-0.1   {Fore.CYAN}|
+{Fore.CYAN}| {Fore.BLUE}shell {Fore.WHITE}by {Fore.RED}Lunar {Fore.WHITE}/ discord : https://discord.gg/2fAVHpqe   {Fore.CYAN}|
+{Fore.CYAN}| {Fore.WHITE}type 'help' for more assistance                          {Fore.CYAN}|
+{Fore.CYAN}| {Fore.WHITE}© zNoNa-Shell                                            {Fore.CYAN}|
+{Fore.CYAN}+——————————————————————————————————————————————————————————+
 {Style.RESET_ALL}""")
 
     while True:
