@@ -1,7 +1,11 @@
 import os
+import psutil
 import socket
 import shutil
 import webbrowser
+import time
+import platform
+import subprocess
 from colorama import *
 
 init(autoreset=True)
@@ -459,8 +463,136 @@ def webopen(Inputwebopen): # cmd : webopen
     except Exception as e:
         print(f"{Fore.RED}webopen: {Style.RESET_ALL}Error {e}")
 
-def znonafetch(): # cmd : znonafetch
-    pass
+def znonafetch():
+    info = get1()
+    os = info['OS']
+    kernel = info['Kernel']
+    uptime = info['Uptime']
+    cpu = info['CPU']
+    ram = info['RAM']
+    resolution = info['Resolution']
+    packages = info['Packages']
+    de = info['DE']
+    theme = info['Theme']
+    pyversion = info['Python Version']
+    cpucores = info['CPU Cores']
+    logicalcores = info['Logical Cores']
+    cputemp = info['CPU Temperature'] if 'CPU Temperature' in info else 'N/A'
+    iplocal = info['IP Local']
 
+    znona = [
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}       :---         ---",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}      -=++=-       =+++=",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}      -*##*+=======+*#*=",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}      =*######*########+=",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}     ==*##%%%%%%%%%%##*=++",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}     ++#%%%%%%%%%%%%%##+++                  {Fore.BLUE}{hostname}{Fore.WHITE}@{Fore.LIGHTYELLOW_EX}{login}{Fore.LIGHTBLACK_EX}",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}     +*%%%%%%%%%%%%%%##*+                   {Fore.WHITE}——————————————————————————",                 
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}     *#%%#{Fore.BLUE}+*{Fore.LIGHTBLACK_EX}#%%%#{Fore.LIGHTYELLOW_EX}**{Fore.LIGHTBLACK_EX}+###*+                   {Fore.BLUE}OS {Fore.WHITE}: {Fore.LIGHTYELLOW_EX}{os}{Fore.LIGHTBLACK_EX}",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}    +*#%%%%%%%%%%%%%%##**+                  {Fore.BLUE}Kernel {Fore.WHITE}: {Fore.LIGHTYELLOW_EX}{kernel}{Fore.LIGHTBLACK_EX}",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}    +*#%%%%%%%%%%%%%%%#**+                  {Fore.BLUE}Uptime {Fore.WHITE}: {Fore.LIGHTYELLOW_EX}{uptime}{Fore.LIGHTBLACK_EX}",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}    ++#%%%%%%%%%%%%%%%##+++                 {Fore.BLUE}DE {Fore.WHITE}: {Fore.LIGHTYELLOW_EX}{de}{Fore.LIGHTBLACK_EX}",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}    ++#%%%%%%%%%%%%%%%##*+                  {Fore.BLUE}RAM {Fore.WHITE}: {Fore.LIGHTYELLOW_EX}{ram}{Fore.LIGHTBLACK_EX}",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}    +*#%%%%%%%%%%%%%%%%#*+                  {Fore.BLUE}Resolution {Fore.WHITE}: {Fore.LIGHTYELLOW_EX}{resolution}{Fore.LIGHTBLACK_EX}",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}    +*%%%@@@@@@@@@%%%%%#**       --=++++==  {Fore.BLUE}Packages {Fore.WHITE}: {Fore.LIGHTYELLOW_EX}{packages}{Fore.LIGHTBLACK_EX}",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}   **#%%@@@@@@@@@@%%%%%%#*       =*##%#     {Fore.BLUE}Theme {Fore.WHITE}: {Fore.LIGHTYELLOW_EX}{theme}{Fore.LIGHTBLACK_EX}",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}  **%%%@@@@@@@@@@%%%%%%#***   -+*#%%#       {Fore.BLUE}Python Version {Fore.WHITE}: {Fore.LIGHTYELLOW_EX}{pyversion}{Fore.LIGHTBLACK_EX}",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}  *#%%%@@@@@@@@@@%%%%%%%#*    +*#%%%        {Fore.BLUE}IP Local {Fore.WHITE}: {Fore.LIGHTYELLOW_EX}{iplocal}{Fore.LIGHTBLACK_EX}",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}  *##%%%@@@@@@@@@@@@@%%%%#**   +#%%%#       {Fore.BLUE}CPU Cores {Fore.WHITE}: {Fore.LIGHTYELLOW_EX}{cpucores}{Fore.LIGHTBLACK_EX}",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}  *#%%%%@@@@@@@@@@@@@@%%%#*** +*%%%%#       {Fore.BLUE}Logical Cores {Fore.WHITE}: {Fore.LIGHTYELLOW_EX}{logicalcores}{Fore.LIGHTBLACK_EX}",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}  ##%%%%@@@@@@@@@@@@@@%%%%##  *#%%%%%       {Fore.BLUE}CPU Temperature {Fore.WHITE}: {Fore.LIGHTYELLOW_EX}{cputemp}{Fore.LIGHTBLACK_EX}",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}  ##%%%%@@@@@@@@@@@@@@%%%%%##*#%%%%%",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX} ##%%%%@@@@@@@@@@@@@@@@%%%%#**#%%%%%",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX} ##%%%@@@@@@@@@@@@@@@@@@%%%%*#%%%%%",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX} ##%%@@@@@@@@@@@@@@@@@@@@@%%#%%%%%",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX} %%%@@@@@@@@@@@@@@@@@@@@@@@%%%%%%",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}  %%@@@@@@@@@@@@@@@@@@@@@@@@@@@",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}  %@@@@@@@@@@@@@@@@@@@@@@@@@@",
+        f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}      @@@@@@@@@@@@@",
+        f"{Style.RESET_ALL}"
+    ]
+    for l in znona:
+        print(l)
+        time.sleep(0.02)
+
+def get1():
+    info = {
+        'OS': platform.system() + " " + platform.version(),
+        'Host': platform.node(),
+        'Kernel': platform.release(),
+        'Uptime': f"{int(psutil.boot_time() - psutil.time.time()) // 3600} hours, {((int(psutil.boot_time() - psutil.time.time()) % 3600) // 60)} mins",
+        'Packages': 'N/A',  
+        'Shell': subprocess.getoutput('echo %SHELL%').split('\\')[-1],  
+        'Resolution': get3(),  
+        'DE': 'N/A',  
+        'Theme': 'N/A', 
+        'CPU': get4(),  
+        'RAM': f"{get2(psutil.virtual_memory().total)} / {get2(psutil.virtual_memory().available)}",
+        'Python Version': platform.python_version(),
+        'Disk Info': get5(),
+        'CPU Cores': psutil.cpu_count(logical=False),
+        'Logical Cores': psutil.cpu_count(logical=True),
+        'CPU Temperature': get6(),
+        'IP Local': get7()
+    }
+    return info
+
+def get2(bytes):
+    for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
+        if bytes < 1024:
+            return f"{bytes:.2f} {unit}"
+        bytes /= 1024
+    return f"{bytes:.2f} PB"
+
+def get3():
+    try:
+        output = subprocess.check_output('wmic desktopmonitor get screenwidth,screenheight', text=True)
+        lines = output.strip().split('\n')
+        if len(lines) > 1:
+            width, height = lines[1].split()
+            return f"{width}x{height}"
+    except Exception:
+        return 'N/A'
+
+def get4():
+    try:
+        output = subprocess.check_output('wmic cpu get caption', text=True)
+        lines = output.strip().split('\n')
+        if len(lines) > 1:
+            return lines[1].strip()
+    except Exception:
+        return 'N/A'
+
+def get5():
+    partitions = psutil.disk_partitions()
+    disk_info = ""
+    for partition in partitions:
+        try:
+            usage = psutil.disk_usage(partition.mountpoint)
+            total = get2(usage.total)
+            used = get2(usage.used)
+            free = get2(usage.free)
+            disk_info += f"  {partition.device} {Fore.WHITE}| {Fore.GREEN}{total}{Fore.WHITE} | {Fore.RED}{used}{Fore.WHITE} | {Fore.LIGHTGREEN_EX}{free}{Fore.LIGHTBLACK_EX}\n"
+        except PermissionError:
+            continue
+    return disk_info
+
+def get6():
+    try:
+        temp = psutil.sensors_temperatures()
+        if 'coretemp' in temp:
+            return f"{temp['coretemp'][0].current} °C"
+        return 'N/A'
+    except Exception:
+        return 'N/A'
+
+def get7():
+    try:
+        hostname = socket.gethostname()
+        ip_address = socket.gethostbyname(hostname)
+        return ip_address
+    except Exception:
+        return 'N/A'
+    
 if __name__ == "__main__":
     zNoNa()
