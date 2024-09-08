@@ -164,7 +164,7 @@ def zNoNa(): # zNoNa shell
             # ________________________________ #
 
             elif Input == "by?":
-                print(f"{Fore.CYAN + Style.BRIGHT}by?:{Style.RESET_ALL} 0x4C 0x55 0x4E 0x41 0x52")
+                print(f"{Fore.CYAN + Style.BRIGHT}by?:{Style.RESET_ALL} 4c756e6172")
 
             # ________________________________ #
             
@@ -479,6 +479,7 @@ def znonafetch(): # cmd : znonafetch
     iplocal = info['IP Local']
 
     znona = [
+        f""
         f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}       :---         ---",
         f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}      -=++=-       =+++=",
         f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}      -*##*+=======+*#*=",
@@ -507,7 +508,7 @@ def znonafetch(): # cmd : znonafetch
         f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}  %%@@@@@@@@@@@@@@@@@@@@@@@@@@@",
         f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}  %@@@@@@@@@@@@@@@@@@@@@@@@@@",
         f"{Style.BRIGHT}{Fore.LIGHTBLACK_EX}      @@@@@@@@@@@@@",
-        f"{Style.RESET_ALL}"
+        f""
     ]
     for l in znona:
         print(l)
