@@ -1,32 +1,32 @@
-# zNoNa-Shell
+# 🎉 **zNoNa-Shell** 🚀
 
-## Description
+## 🌟 Description
 
-**zNoNa-Shell** est un projet de shell Python open-source, actuellement en version **0.1**. Ce shell offre une interface en ligne de commande permettant d'effectuer diverses opérations sur les fichiers et répertoires, avec une présentation stylisée grâce à la bibliothèque `colorama`.
+**zNoNa-Shell** est un projet de shell Python open-source, actuellement en version **0.1**. Ce shell te permet de naviguer dans ton système de fichiers et de gérer tes fichiers et répertoires avec une touche de style grâce à la bibliothèque `colorama`. 🎨
 
-Le projet inclut des fonctionnalités pour naviguer dans le système de fichiers, gérer les fichiers et répertoires, ainsi que pour obtenir des informations système de manière visuelle. Il est conçu pour être simple à utiliser et modulaire.
+Que tu sois un développeur curieux ou simplement quelqu'un qui veut améliorer son terminal, **zNoNa-Shell** est conçu pour être simple à utiliser et facilement extensible. 🌐
 
-## Installation
+## 🚀 Installation
 
-1. Clonez ce repository :
-   ```bash
+1. Clone le repository :
+2. ```bash
    git clone https://github.com/Luunarr/zNoNa-Shell.git
    ```
 
-2. Installez les dépendances nécessaires :
+3. Installe les dépendances nécessaires :
    ```bash
    pip install -r requirements.txt
    ```
 
-3. Exécutez le shell :
+4. Lance le shell :
    ```bash
    python zNoNa-Shell.py
    ```
 
-## Contribuer
+## 🤝 Contribuer
 
-Les contributions sont les bienvenues ! Si vous souhaitez ajouter de nouvelles fonctionnalités ou corriger des bogues, veuillez soumettre une pull request.
+Tu veux ajouter des fonctionnalités ou corriger des bogues ? Les contributions sont les bienvenues ! 🚀 Soumets une pull request et rejoins la communauté de développeurs. 💪
 
-## Contact
+## 💬 Contact
 
-Pour toute question ou suggestion, vous pouvez contacter l'auteur via Discord : **aa_aaaa_bbb_bbbbb**.
+Des questions ou des suggestions ? N'hésite pas à me contacter via Discord : **aa_aaaa_bbb_bbbbb**. 
