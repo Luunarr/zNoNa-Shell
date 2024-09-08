@@ -365,11 +365,17 @@ def cd(path): # cmd : cd
     try:
         os.chdir(path)
         global prompt
-        prompt = f"""{Style.BRIGHT + Fore.BLUE + hostname + Fore.WHITE}@{Fore.BLUE + login + Fore.WHITE}:{Fore.CYAN + cwd() + Fore.BLUE + Fore.RED}$ {Style.RESET_ALL}"""
+        prompt = f"""{Style.BRIGHT + Fore.BLUE + hostname + Fore.WHITE}@{Fore.BLUE + login + Fore.WHITE}:{Fore.CYAN + os.getcwd() + Fore.BLUE + Fore.RED}$ {Style.RESET_ALL}"""
     except FileNotFoundError:
         print(f"{Fore.RED + Style.BRIGHT}cd: {Style.RESET_ALL}No such file or directory '{path}'")
     except PermissionError:
         print(f"{Fore.RED + Style.BRIGHT}cd: {Style.RESET_ALL}Permission denied '{path}'")
+    except NotADirectoryError:
+        print(f"{Fore.RED + Style.BRIGHT}cd: {Style.RESET_ALL}Not a directory '{path}'")
+    except OSError as e:
+        print(f"{Fore.RED + Style.BRIGHT}cd: {Style.RESET_ALL}OS error: {e}")
+    except Exception as e:
+        print(f"{Fore.RED + Style.BRIGHT}cd: {Style.RESET_ALL}Unexpected error: {e}")
 
 def mkdir(Inputmkdir): # cmd : mkdir 
     try:
@@ -379,8 +385,12 @@ def mkdir(Inputmkdir): # cmd : mkdir
         print(f"{Fore.RED + Style.BRIGHT}mkdir: {Style.RESET_ALL}Directory '{Inputmkdir}' already exists")
     except PermissionError:
         print(f"{Fore.RED + Style.BRIGHT}mkdir: {Style.RESET_ALL}Permission denied to create directory '{Inputmkdir}'")
+    except FileNotFoundError:
+        print(f"{Fore.RED + Style.BRIGHT}mkdir: {Style.RESET_ALL}Invalid path '{Inputmkdir}'")
     except OSError as e:
-        print(f"{Fore.RED + Style.BRIGHT}mkdir: {Style.RESET_ALL}Error creating directory '{Inputmkdir}' {e}")
+        print(f"{Fore.RED + Style.BRIGHT}mkdir: {Style.RESET_ALL}Error creating directory '{Inputmkdir}': {e}")
+    except Exception as e:
+        print(f"{Fore.RED + Style.BRIGHT}mkdir: {Style.RESET_ALL}Unexpected error: {e}")
 
 def touch(Inputtouch): # cmd : touch 
     try:
@@ -389,8 +399,12 @@ def touch(Inputtouch): # cmd : touch
         print(f"{Fore.GREEN + Style.BRIGHT}touch: {Style.RESET_ALL}File '{Inputtouch}' touched successfully")
     except PermissionError:
         print(f"{Fore.RED + Style.BRIGHT}touch: {Style.RESET_ALL}Permission denied to create or update file '{Inputtouch}'")
+    except FileNotFoundError:
+        print(f"{Fore.RED + Style.BRIGHT}touch: {Style.RESET_ALL}File or directory not found '{Inputtouch}'")
     except OSError as e:
-        print(f"{Fore.RED + Style.BRIGHT}touch: {Style.RESET_ALL}Error creating or updating file '{Inputtouch}' {e}")
+        print(f"{Fore.RED + Style.BRIGHT}touch: {Style.RESET_ALL}OS error creating or updating file '{Inputtouch}': {e}")
+    except Exception as e:
+        print(f"{Fore.RED + Style.BRIGHT}touch: {Style.RESET_ALL}Unexpected error: {e}")
 
 def rm(Inputrm): # cmd : rm
     try:
@@ -401,18 +415,25 @@ def rm(Inputrm): # cmd : rm
     except PermissionError:
         print(f"{Fore.RED + Style.BRIGHT}rm: {Style.RESET_ALL}Permission denied to remove file '{Inputrm}'")
     except OSError as e:
-        print(f"{Fore.RED + Style.BRIGHT}rm: {Style.RESET_ALL}Error removing file '{Inputrm}' {e}")
+        print(f"{Fore.RED + Style.BRIGHT}rm: {Style.RESET_ALL}OS error removing file '{Inputrm}': {e}")
+    except Exception as e:
+        print(f"{Fore.RED + Style.BRIGHT}rm: {Style.RESET_ALL}Unexpected error: {e}")
 
 def rmdir(Inputrmdir): # cmd : rmdir
     try:
-        os.rmdir(Inputrmdir)
-        print(f"{Fore.GREEN + Style.BRIGHT}rmdir: {Style.RESET_ALL}Directory '{Inputrmdir}' removed successfully")
+        if not os.listdir(Inputrmdir):
+            os.rmdir(Inputrmdir)
+            print(f"{Fore.GREEN + Style.BRIGHT}rmdir: {Style.RESET_ALL}Directory '{Inputrmdir}' removed successfully")
+        else:
+            print(f"{Fore.RED + Style.BRIGHT}rmdir: {Style.RESET_ALL}Directory '{Inputrmdir}' is not empty")
     except FileNotFoundError:
         print(f"{Fore.RED + Style.BRIGHT}rmdir: {Style.RESET_ALL}No such directory '{Inputrmdir}'")
     except PermissionError:
         print(f"{Fore.RED + Style.BRIGHT}rmdir: {Style.RESET_ALL}Permission denied to remove directory '{Inputrmdir}'")
     except OSError as e:
-        print(f"{Fore.RED + Style.BRIGHT}rmdir: {Style.RESET_ALL}Error removing directory '{Inputrmdir}' {e}")
+        print(f"{Fore.RED + Style.BRIGHT}rmdir: {Style.RESET_ALL}Error removing directory '{Inputrmdir}': {e}")
+    except Exception as e:
+        print(f"{Fore.RED + Style.BRIGHT}rmdir: {Style.RESET_ALL}Unexpected error: {e}")
 
 def cat(Inputcat): # cmd : cat
     try:
@@ -426,7 +447,7 @@ def cat(Inputcat): # cmd : cat
     except IsADirectoryError:
         print(f"{Fore.RED + Style.BRIGHT}cat: {Style.RESET_ALL}'{Inputcat}' is a directory, not a file")
     except Exception as e:
-        print(f"{Fore.RED + Style.BRIGHT}cat: {Style.RESET_ALL}Error reading file '{Inputcat}' {e}")
+        print(f"{Fore.RED + Style.BRIGHT}cat: {Style.RESET_ALL}Unexpected error reading file '{Inputcat}': {e}")
 
 def mv(Inputmvsource, Inputmvdestination): # cmd : mv
     try:
@@ -435,9 +456,11 @@ def mv(Inputmvsource, Inputmvdestination): # cmd : mv
     except FileNotFoundError:
         print(f"{Fore.RED}mv: {Style.RESET_ALL}No such file '{Inputmvsource}'")
     except PermissionError:
-        print(f"{Fore.RED}mv: {Style.RESET_ALL}Permission denied")
+        print(f"{Fore.RED}mv: {Style.RESET_ALL}Permission denied to move file from '{Inputmvsource}' to '{Inputmvdestination}'")
+    except shutil.Error as e:
+        print(f"{Fore.RED}mv: {Style.RESET_ALL}Shutil error: {e}")
     except Exception as e:
-        print(f"{Fore.RED}mv: {Style.RESET_ALL}Error {e}")
+        print(f"{Fore.RED}mv: {Style.RESET_ALL}Unexpected error: {e}")
 
 def cp(Inputcpsource, Inputcpdestination): # cmd : cp
     try:
@@ -446,20 +469,25 @@ def cp(Inputcpsource, Inputcpdestination): # cmd : cp
     except FileNotFoundError:
         print(f"{Fore.RED}cp: {Style.RESET_ALL}No such file '{Inputcpsource}'")
     except PermissionError:
-        print(f"{Fore.RED}cp: {Style.RESET_ALL}Permission denied")
+        print(f"{Fore.RED}cp: {Style.RESET_ALL}Permission denied to copy file from '{Inputcpsource}' to '{Inputcpdestination}'")
+    except shutil.SameFileError:
+        print(f"{Fore.RED}cp: {Style.RESET_ALL}Source and destination are the same file '{Inputcpsource}'")
+    except OSError as e:
+        print(f"{Fore.RED}cp: {Style.RESET_ALL}OS error: {e}")
     except Exception as e:
-        print(f"{Fore.RED}cp: {Style.RESET_ALL}Error {e}")
+        print(f"{Fore.RED}cp: {Style.RESET_ALL}Unexpected error: {e}")
 
 def webopen(Inputwebopen): # cmd : webopen
     try:
         if not Inputwebopen.startswith(("http://", "https://")):
             Inputwebopen = "http://" + Inputwebopen
-
         webbrowser.open(Inputwebopen)
         print(f"{Fore.GREEN}webopen: {Style.RESET_ALL}Opening '{Inputwebopen}' in the browser")
-    
+
+    except ValueError as e:
+        print(f"{Fore.RED}webopen: {Style.RESET_ALL}Invalid URL '{Inputwebopen}': {e}")
     except Exception as e:
-        print(f"{Fore.RED}webopen: {Style.RESET_ALL}Error {e}")
+        print(f"{Fore.RED}webopen: {Style.RESET_ALL}Unexpected error: {e}")
 
 def znonafetch(): # cmd : znonafetch
     info = get1()
