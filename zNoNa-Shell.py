@@ -164,7 +164,7 @@ def zNoNa(): # zNoNa shell
             # ________________________________ #
 
             elif Input == "by?":
-                print(f"{Fore.CYAN + Style.BRIGHT}by?:{Style.RESET_ALL} 4c756e6172")
+                print(f"{Fore.CYAN + Style.BRIGHT}by?:{Style.RESET_ALL} LunarDllReboot")
 
             # ________________________________ #
             
