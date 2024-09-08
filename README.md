@@ -10,7 +10,7 @@ Le projet inclut des fonctionnalités pour naviguer dans le système de fichiers
 
 1. Clonez ce repository :
    ```bash
-   git clone https://github.com/luunarr/zNoNa-Shell.git
+   git clone https://github.com/Luunarr/zNoNa-Shell.git
    ```
 
 2. Installez les dépendances nécessaires :
