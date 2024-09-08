@@ -31,4 +31,4 @@ Tu veux ajouter des fonctionnalités ou corriger des bogues ? Les contributions 
 
 Des questions ou des suggestions ? N'hésite pas à me contacter via Discord : **aa_aaaa_bbb_bbbbb**. 
 
-🎀 **Discord : https://discord.gg/zA9FhD6uGt** 🎀
+🎀 **Rejoins-nous sur Discord !** 🎀 [https://discord.gg/zA9FhD6uGt](https://discord.gg/zA9FhD6uGt)
